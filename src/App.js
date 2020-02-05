@@ -7,7 +7,7 @@ import './App.css'
 export class App extends Component {
   state = {
     todos: [],
-    todo:''
+    todo:{}
   }
 
   getTodo = (event) => {
@@ -17,10 +17,13 @@ export class App extends Component {
   }
 
   addTodo = (event) => { 
-    const todos = [...this.state.todos]
-    todos.push(this.state.todo)
+    const todoObj = {task: this.state.todo}
+    console.log(todoObj);
+    
+    const todos = [...this.state.todos, todoObj]
+    console.log(todos);
+    
     this.setState({todos: todos})
-    this.setState({todo: ''})
     event.preventDefault()
     event.target.reset()
   }

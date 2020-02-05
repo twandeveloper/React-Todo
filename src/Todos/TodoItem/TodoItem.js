@@ -6,6 +6,6 @@ export default function TodoItem(props) {
     return (
         <p 
             className={classes.todoItem}
-            onClick={props.delete}>{props.todo}</p>
+            onClick={props.delete}>{props.todo.task}</p>
     )
 }
