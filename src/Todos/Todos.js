@@ -6,9 +6,10 @@ import classes from './Todos.module.css'
 export default function Todos(props) {
 
     const todos = props.todos.map((todo, index) => {
-        return(<TodoItem 
-                    todo={todo}
-                    key={index}/>)
+        return(
+        <TodoItem 
+            todo={todo}
+            key={index}/>)
     })
 
     return (

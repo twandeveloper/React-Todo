@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Todos from './Todos/Todos'
+import AddTodo from './AddTodo/AddTodo'
 import './App.css'
 
 
@@ -16,11 +17,13 @@ export class App extends Component {
   }
 
   addTodo = (event) => {
-    event.preventDefault()
+    
     const todos = [...this.state.todos]
     todos.push(this.state.todo)
     this.setState({todos: todos})
     this.setState({todo: ''})
+    event.preventDefault()
+    event.target.reset()
   }
 
   render() {
@@ -28,11 +31,11 @@ export class App extends Component {
       <div className='App'>
         <h1>Todo</h1>
         <Todos todos={this.state.todos}/>
-        <form onSubmit={this.addTodo}>
-          <input type='text' value={this.state.todo} onChange={this.getTodo}/>
-          <input type='submit' value='Submit' />
-        </form>
-    
+        <br/>
+        <AddTodo 
+          todo={this.props.todo} 
+          addTodo={(event) => this.addTodo(event)}
+          getTodo={(event) => this.getTodo(event)}/>
       </div>
     )
   }
