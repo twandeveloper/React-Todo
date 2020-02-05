@@ -1,7 +1,5 @@
 .todoItem {
-    background-color: gray;
-    border: 2px solid black;
-    border-radius: 10px;
+    box-shadow: 2px 2px 3px 1px black ;
     width: 300px;
     color: red;
     margin: 20px auto;

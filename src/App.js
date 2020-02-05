@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
-import Todos from './Todos/Todos'
-import AddTodo from './AddTodo/AddTodo'
+import Todos from './components/Todos/Todos'
+import AddTodo from './components/AddTodo/AddTodo'
+import Header from './components/Header/Header'
+
 import './App.css'
 
 
 export class App extends Component {
   state = {
-    todos: [],
-    todo:{}
+    todos: [
+      {task: 'todo 1'}
+    ]
   }
 
   getTodo = (event) => {
@@ -16,9 +19,11 @@ export class App extends Component {
     
   }
 
-  addTodo = (event) => { 
+  addTodo = (event, taskIndex) => { 
     const todoObj = {task: this.state.todo}
     console.log(todoObj);
+    console.log(taskIndex);
+    
     
     const todos = [...this.state.todos, todoObj]
     console.log(todos);
@@ -37,7 +42,7 @@ export class App extends Component {
   render() {
     return (
       <div className='App'>
-        <h1>Todo</h1>
+        <Header/>
         <Todos 
           todos={this.state.todos}
           delete={this.deleteTodo}/>
