@@ -4,6 +4,8 @@ import classes from './TodoItem.module.css'
 
 export default function TodoItem(props) {
     return (
-        <p className={classes.todoItem}>{props.todo}</p>
+        <p 
+            className={classes.todoItem}
+            onClick={props.delete}>{props.todo}</p>
     )
 }

@@ -16,8 +16,7 @@ export class App extends Component {
     
   }
 
-  addTodo = (event) => {
-    
+  addTodo = (event) => { 
     const todos = [...this.state.todos]
     todos.push(this.state.todo)
     this.setState({todos: todos})
@@ -26,11 +25,19 @@ export class App extends Component {
     event.target.reset()
   }
 
+  deleteTodo = (taskIndex) => {
+    const todos = [...this.state.todos]
+    todos.splice(taskIndex, 1)
+    this.setState({todos: todos}) 
+  }
+
   render() {
     return (
       <div className='App'>
         <h1>Todo</h1>
-        <Todos todos={this.state.todos}/>
+        <Todos 
+          todos={this.state.todos}
+          delete={this.deleteTodo}/>
         <br/>
         <AddTodo 
           todo={this.props.todo} 

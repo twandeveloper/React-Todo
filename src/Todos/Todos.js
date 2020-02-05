@@ -9,7 +9,8 @@ export default function Todos(props) {
         return(
         <TodoItem 
             todo={todo}
-            key={index}/>)
+            key={index}
+            delete={() => props.delete(index)}/>)
     })
 
     return (
