@@ -2,10 +2,20 @@
     display: grid;
     grid-template-rows: minmax(0px, auto);
     grid-template-columns: minmax(25%, auto);
-    /* border: 5px solid black;
-    border-radius: 10px;
-    background-color: #ffff; */
+    background-color:#ecfffb;
     align-items: center;
-    width: 50%;
+    width: 40%;
     margin: auto;
+}
+
+@media (min-width:200px) and (max-width:800px){
+    .Todos {
+        width: 90%;
+    }
+}
+
+@media (min-width:1000px) {
+    .Todos {
+        width: 80%;
+    }
 }

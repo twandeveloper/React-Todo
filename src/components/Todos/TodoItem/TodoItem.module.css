@@ -1,7 +1,19 @@
 .todoItem {
-    /* box-shadow: 2px 2px 3px 1px black ; */
-    width: 60%;
-    /* color: red; */
-    margin: 5px auto;
-    padding: 10px;
+    border: 1px solid #2d767f;
+    width: 80%;
+    margin: auto;
+    padding: 8px;
 }
+
+@media (min-width:200px) and (max-width:800px){
+    .todoItem {
+        width: 80%;
+    }
+}
+
+@media (min-width:768px) and (max-width:1024px){
+    .todoItem {
+        width: 70%;
+    }
+}
+
