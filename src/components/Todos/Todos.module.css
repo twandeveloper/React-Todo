@@ -1,7 +1,11 @@
 .Todos {
-    border: 1px solid black;
-    background-color: #ffff;
-    margin: auto;
+    display: grid;
+    grid-template-rows: minmax(0px, auto);
+    grid-template-columns: minmax(25%, auto);
+    /* border: 5px solid black;
+    border-radius: 10px;
+    background-color: #ffff; */
+    align-items: center;
     width: 50%;
-    min-height: 400px;
+    margin: auto;
 }

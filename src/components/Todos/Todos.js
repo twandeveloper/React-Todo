@@ -1,4 +1,6 @@
 import React from 'react'
+import { Jumbotron, Container } from 'react-bootstrap'
+
 import TodoItem from './TodoItem/TodoItem'
 
 import classes from './Todos.module.css'
@@ -14,8 +16,8 @@ export default function Todos(props) {
     })
 
     return (
-        <div className={classes.Todos}>
-            {todos}
-        </div>
+        <Jumbotron className={classes.Todos}>
+            { todos }
+        </Jumbotron>
     )
 }

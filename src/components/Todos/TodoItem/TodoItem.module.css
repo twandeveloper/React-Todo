@@ -1,7 +1,7 @@
 .todoItem {
-    box-shadow: 2px 2px 3px 1px black ;
-    width: 300px;
-    color: red;
-    margin: 20px auto;
+    /* box-shadow: 2px 2px 3px 1px black ; */
+    width: 60%;
+    /* color: red; */
+    margin: 5px auto;
     padding: 10px;
 }
