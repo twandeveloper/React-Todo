@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Todos from './components/Todos/Todos'
-import AddTodo from './components/AddTodo/AddTodo'
+
 import Header from './components/Header/Header'
 
 import './App.css'
@@ -12,16 +12,17 @@ export class App extends Component {
   state = {
     todos: [
       {task: 'todo 1'}
-    ]
+    ],
+    todo: ''
   }
 
-  getTodo = (event) => {
+  getTodoHandler = (event) => {
     this.setState({todo: event.target.value })
     console.log(this.state.todo);
     
   }
 
-  addTodo = (event, taskIndex) => { 
+  addTodoHandler = (event, taskIndex) => { 
     const todoObj = {task: this.state.todo}
     console.log(todoObj);
     console.log(taskIndex);
@@ -31,8 +32,14 @@ export class App extends Component {
     console.log(todos);
     
     this.setState({todos: todos})
+    this.setState({todo: ''})
     event.preventDefault()
     event.target.reset()
+  }
+
+  clearTodoInputHandler = () => {
+    this.setState({todo: ''})
+    
   }
 
   deleteTodo = (taskIndex) => {
@@ -47,12 +54,10 @@ export class App extends Component {
         <Header/>
         <Todos 
           todos={this.state.todos}
-          delete={this.deleteTodo}/>
-        <br/>
-        <AddTodo 
-          todo={this.props.todo} 
-          addTodo={(event) => this.addTodo(event)}
-          getTodo={(event) => this.getTodo(event)}/>
+          delete={this.deleteTodo}
+          addTodo={(event) => this.addTodoHandler(event)}
+          getTodo={(event) => this.getTodoHandler(event)}
+          clearInput={this.clearTodoInputHandler}/>
       </div>
     )
   }
