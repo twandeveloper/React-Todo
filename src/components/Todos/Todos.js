@@ -8,12 +8,12 @@ import classes from './Todos.module.css'
 
 export default function Todos(props) {
 
-    const todos = props.todos.map((todo, index) => {
+    const todos = props.todos.map((todo) => {
         return(
         <TodoItem 
             todo={todo}
-            key={index}
-            delete={() => props.delete(index)}/>)
+            key={todo.id}
+            delete={() => props.delete(todo.id)}/>)
     })
 
     return (

@@ -9,6 +9,7 @@ export default function TodoItem(props) {
             className={classes.todoItem}
             onClick={props.delete}
         >
+                {props.todo.id}
                 {props.todo.task}
         </ListGroup.Item>
     )

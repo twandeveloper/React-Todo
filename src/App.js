@@ -23,9 +23,9 @@ export class App extends Component {
         const todoArr = []
 
         for(let key in fireTodo) {
-          todoArr.push(fireTodo[key])
+          todoArr.push(key, fireTodo[key])
         }
-        console.log(todoArr);
+        console.log(todoArr[0]);
         this.setState({todos: todoArr})
       })
 
@@ -51,6 +51,7 @@ export class App extends Component {
   addTodoHandler = (event, taskIndex) => { 
 
     const newTodo = {
+      id: this.state.todos.length + 1,
       task: this.state.todo,
       user: 'Antoine'
     }
@@ -73,10 +74,27 @@ export class App extends Component {
     
   }
 
-  deleteTodo = (taskIndex) => {
-    const todos = [...this.state.todos]
-    todos.splice(taskIndex, 1)
-    this.setState({todos: todos})
+  deleteTodo = (taskId) => {
+    const test = this.state.todos[taskId - 1];
+    console.log(typeof test);
+    
+    
+
+    axios.get('/todos.json/' + test)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+        
+      })
+    
+    // console.log(taskIndex);
+    
+    // axios.delete()
+    // const todos = [...this.state.todos]
+    // todos.splice(taskIndex, 1)
+    // this.setState({todos: todos})
 
   }
 
