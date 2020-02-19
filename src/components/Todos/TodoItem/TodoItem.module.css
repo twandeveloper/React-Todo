@@ -1,9 +1,21 @@
 .todoItem {
     border: 1px solid #2d767f;
     width: 80%;
-    margin: auto;
+    margin: 5px auto;
     padding: 8px;
+    background: white;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+    font-family: roboto;
+    text-align: center;
+    transition: 0.5s ease;
+    cursor: pointer;
 }
+
+.todoItem:hover {
+    transform: scale(1.15);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+  }
+
 
 @media (min-width:200px) and (max-width:800px){
     .todoItem {
