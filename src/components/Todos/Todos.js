@@ -10,10 +10,11 @@ export default function Todos(props) {
 
     const todos = props.todos.map((todo) => {
         return(
-        <TodoItem 
+        <TodoItem
             todo={todo}
             key={todo.id}
-            delete={() => props.delete(todo.id)}/>)
+            taskComplete={todo.isCompleted}
+            complete={() => props.complete(todo.id, todo.isCompleted)}/>)
     })
 
     return (

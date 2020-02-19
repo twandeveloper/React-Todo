@@ -7,10 +7,9 @@ export default function TodoItem(props) {
     return (
         <ListGroup.Item
             className={classes.todoItem}
-            onClick={props.delete}
+            onClick={props.complete}
         >
-                {props.todo.id}
-                {props.todo.task}
+            <p style={{textDecoration: props.taskComplete ? 'line-through' : 'none'}}>{props.todo.task}</p>
         </ListGroup.Item>
     )
 }

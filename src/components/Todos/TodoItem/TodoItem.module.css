@@ -1,5 +1,6 @@
 .todoItem {
     border: 1px solid #2d767f;
+    font-weight: bold;
     width: 80%;
     margin: 5px auto;
     padding: 8px;
@@ -9,6 +10,14 @@
     text-align: center;
     transition: 0.5s ease;
     cursor: pointer;
+}
+
+/* p {
+    text-decoration: none;
+} */
+
+.todoItem.active{
+    text-decoration: line-through;
 }
 
 .todoItem:hover {

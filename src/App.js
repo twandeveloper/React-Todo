@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from './axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Todos from './components/Todos/Todos'
@@ -26,10 +25,10 @@ export class App extends Component {
         newTodos.push({
           id: todo,
           task: todos[todo].task,
-          author: todos[todo].author
+          author: todos[todo].author,
+          isCompleted: todos[todo].isCompleted
         })
       }
-      console.log(newTodos);
       
       this.setState({todos: newTodos})
     })
@@ -52,51 +51,43 @@ export class App extends Component {
     
   }
 
-  addTodoHandler = (event, taskIndex) => { 
-    const todoRef = firebase.database().ref('todos');
+  addTodoHandler = (event) => {
 
     event.preventDefault()
+    const todoRef = firebase.database().ref('todos');
 
     const newTodo = {
-      id: this.state.todos.length + 1,
       task: this.state.todo,
-      user: 'Antoine'
+      user: 'Antoine',
+      isCompleted: false
     }
 
-    todoRef.push(newTodo)
+    if (this.state.todo) {
 
-    this.setState({todo: ''})
+      todoRef.push(newTodo)
+      this.setState({todo: ''})
+      event.target.reset()
+    }
 
-    
-    event.target.reset()
+
   }
-
   clearTodoInputHandler = () => {
     this.setState({todo: ''})
+  }
+
+  completedHandler = (todoId, todoTask) => {
+    const todoRef = firebase.database().ref(`/todos/${todoId}`);
+    todoRef.update({
+      isCompleted: (todoTask === true ? false : true)
+    })
+    
     
   }
 
   deleteTodo = (todoId) => {
-
     const todoRef = firebase.database().ref(`/todos/${todoId}`);
-
+    
     todoRef.remove();
-    
-
-    // const test = this.state.todos[taskId - 1];
-    // console.log(typeof test);
-    
-    
-
-    // axios.get('/todos.json/' + test)
-    //   .then(response => {
-    //     console.log(response.data);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-        
-    //   })
-
   }
 
   render() {
@@ -106,6 +97,7 @@ export class App extends Component {
         <Todos 
           todos={this.state.todos}
           delete={this.deleteTodo}
+          complete={this.completedHandler}
           addTodo={(event) => this.addTodoHandler(event)}
           getTodo={(event) => this.getTodoHandler(event)}
           clearInput={this.clearTodoInputHandler}/>
