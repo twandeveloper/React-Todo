@@ -1,7 +1,9 @@
 .Header {
     color: cornflowerblue;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
     margin: auto;
     margin-bottom: .2px;
-    width: 50%;
+    width: 70%;
 
 }

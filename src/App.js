@@ -10,7 +10,9 @@ import firebase from './firebase'
 export class App extends Component {
   state = {
     todos: [],
-    todo: ''
+    todo: '',
+    show: false,
+    setShow: true
   }
 
   componentDidMount() {
@@ -29,21 +31,9 @@ export class App extends Component {
           isCompleted: todos[todo].isCompleted
         })
       }
-      
       this.setState({todos: newTodos})
-    })
-      
-      
+    })  
   }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (nextState.todos === this.state.todos) {
-  //     return false
-  //   }
-  //   console.log('fired off');
-  //   this.setState({todos: nextState.todos})
-  //   return true
-  // }
 
   getTodoHandler = (event) => {
     this.setState({todo: event.target.value })
@@ -57,7 +47,7 @@ export class App extends Component {
     const todoRef = firebase.database().ref('todos');
 
     const newTodo = {
-      task: this.state.todo,
+      task: this.state.todo.toUpperCase(),
       user: 'Antoine',
       isCompleted: false
     }
@@ -68,9 +58,8 @@ export class App extends Component {
       this.setState({todo: ''})
       event.target.reset()
     }
-
-
   }
+
   clearTodoInputHandler = () => {
     this.setState({todo: ''})
   }
@@ -79,15 +68,23 @@ export class App extends Component {
     const todoRef = firebase.database().ref(`/todos/${todoId}`);
     todoRef.update({
       isCompleted: (todoTask === true ? false : true)
-    })
-    
-    
+    })   
   }
 
   deleteTodo = (todoId) => {
     const todoRef = firebase.database().ref(`/todos/${todoId}`);
+    console.log(todoRef);
+    // console.log(todoId);
     
     todoRef.remove();
+  }
+
+  showModalHandler = () => {
+    this.setState({show: true})
+  }
+
+  closeModalHandler = () => {
+    this.setState({show: false})
   }
 
   render() {
@@ -96,11 +93,15 @@ export class App extends Component {
         <Header/>
         <Todos 
           todos={this.state.todos}
-          delete={this.deleteTodo}
+          delete={(event) => this.deleteTodo(event)}
           complete={this.completedHandler}
           addTodo={(event) => this.addTodoHandler(event)}
           getTodo={(event) => this.getTodoHandler(event)}
-          clearInput={this.clearTodoInputHandler}/>
+          clearInput={this.clearTodoInputHandler}
+          show={this.state.show}
+          setShow={this.state.setShow}
+          handleClose={this.closeModalHandler}
+          handleShow={this.showModalHandler}/>
       </div>
     )
   }

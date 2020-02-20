@@ -3,6 +3,8 @@ import { Jumbotron } from 'react-bootstrap'
 
 import TodoItem from './TodoItem/TodoItem'
 import AddTodo from '../AddTodo/AddTodo'
+import AddButton from '../AddButton/AddButton'
+import AddModal from '../../UI/AddModal/AddModal'
 
 import classes from './Todos.module.css'
 
@@ -14,6 +16,7 @@ export default function Todos(props) {
             todo={todo}
             key={todo.id}
             taskComplete={todo.isCompleted}
+            delete={() => props.delete(todo.id)}
             complete={() => props.complete(todo.id, todo.isCompleted)}/>)
     })
 
@@ -24,6 +27,10 @@ export default function Todos(props) {
                 addTodo={props.addTodo}
                 getTodo={props.getTodo}
                 clearInput={props.clearInput}/>
+
+            <AddButton handleShow={props.handleShow}/>
+            <AddModal show={props.show} setShow={props.setShow} handleClose={props.handleClose}
+          handleShow={props.handleShow}/>
         </Jumbotron>
     )
 }
