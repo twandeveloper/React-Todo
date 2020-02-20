@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 import Todos from './components/Todos/Todos'
 import Header from './components/Header/Header'
-import Aux from './Hoc/Aux/Aux'
 import './App.css'
 import firebase from './firebase'
 import TodoContext from './contexts/TodoContext'

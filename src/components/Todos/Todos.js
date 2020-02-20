@@ -1,8 +1,6 @@
 import React from 'react'
 import { Jumbotron } from 'react-bootstrap'
-
 import TodoItem from './TodoItem/TodoItem'
-import AddTodo from '../AddTodo/AddTodo'
 import AddButton from '../AddButton/AddButton'
 import AddModal from '../../UI/AddModal/AddModal'
 

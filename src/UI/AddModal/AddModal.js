@@ -14,7 +14,7 @@ const AddModal = (props) => {
           
             <Modal className={classes.AddModal} show={todo.show} onHide={todo.closeModal}>
               <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Add Task</Modal.Title>
               </Modal.Header>
               <Modal.Body>
 
@@ -30,7 +30,7 @@ const AddModal = (props) => {
                   Close
                 </Button>
                 <Button variant="primary" onClick={todo.addTask}>
-                  Add Task
+                  Add 
                 </Button>
               </Modal.Footer>
             </Modal>
