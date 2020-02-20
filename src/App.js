@@ -3,8 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Todos from './components/Todos/Todos'
 import Header from './components/Header/Header'
+import Aux from './Hoc/Aux/Aux'
 import './App.css'
 import firebase from './firebase'
+import TodoContext from './contexts/TodoContext'
 
 
 export class App extends Component {
@@ -44,6 +46,7 @@ export class App extends Component {
   addTodoHandler = (event) => {
 
     event.preventDefault()
+    this.closeModalHandler();
     const todoRef = firebase.database().ref('todos');
 
     const newTodo = {
@@ -56,7 +59,7 @@ export class App extends Component {
 
       todoRef.push(newTodo)
       this.setState({todo: ''})
-      event.target.reset()
+
     }
   }
 
@@ -80,6 +83,8 @@ export class App extends Component {
   }
 
   showModalHandler = () => {
+    console.log('clicked');
+    
     this.setState({show: true})
   }
 
@@ -90,19 +95,26 @@ export class App extends Component {
   render() {
     return (
       <div className='App'>
+        <TodoContext.Provider 
+          value={{
+            show:this.state.show,
+            todo: this.state.todo,
+            openModal: this.showModalHandler, 
+            closeModal: this.closeModalHandler,
+            getTask: (e) => this.getTodoHandler(e),
+            addTask: (e) => this.addTodoHandler(e)
+          }}
+        >
         <Header/>
-        <Todos 
-          todos={this.state.todos}
-          delete={(event) => this.deleteTodo(event)}
-          complete={this.completedHandler}
-          addTodo={(event) => this.addTodoHandler(event)}
-          getTodo={(event) => this.getTodoHandler(event)}
-          clearInput={this.clearTodoInputHandler}
-          show={this.state.show}
-          setShow={this.state.setShow}
-          handleClose={this.closeModalHandler}
-          handleShow={this.showModalHandler}/>
-      </div>
+        
+          <Todos 
+            todos={this.state.todos}
+            delete={(event) => this.deleteTodo(event)}
+            complete={this.completedHandler}
+            clearInput={this.clearTodoInputHandler}
+          />
+        </TodoContext.Provider>
+        </div>
     )
   }
 }

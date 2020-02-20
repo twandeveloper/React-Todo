@@ -23,14 +23,8 @@ export default function Todos(props) {
     return (
         <Jumbotron className={classes.Todos}>
             { todos }
-            <AddTodo
-                addTodo={props.addTodo}
-                getTodo={props.getTodo}
-                clearInput={props.clearInput}/>
-
             <AddButton handleShow={props.handleShow}/>
-            <AddModal show={props.show} setShow={props.setShow} handleClose={props.handleClose}
-          handleShow={props.handleShow}/>
+            <AddModal/>
         </Jumbotron>
     )
 }

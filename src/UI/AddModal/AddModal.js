@@ -1,30 +1,44 @@
-import React from 'react'
-import { Button, Modal } from "react-bootstrap";
+import React, { useContext } from 'react'
+import { Button, Modal, Form, FormControl, InputGroup} from "react-bootstrap";
+import Aux from '../../Hoc/Aux/Aux'
+import TodoContext from '../../contexts/TodoContext';
+
 
 const AddModal = (props) => {
 
-
+  const todo = useContext(TodoContext);
 
   return(
-    <div>
-    <Modal show={props.show} onHide={props.handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
-      </Modal.Header>
-      <Modal.Body><input></input></Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={props.handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={props.handleClose}>
-          Save Changes
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  </div>
+        <Aux>
+          
+            <Modal show={todo.show} onHide={todo.closeModal}>
+              <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+
+              <Form onSubmit={todo.addTask}>
+                <InputGroup>
+                  <FormControl placeholder='Enter Task' value={todo.todo} onChange={todo.getTask} />
+                </InputGroup>
+              </Form>
+
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={todo.closeModal} >
+                  Close
+                </Button>
+                <Button variant="primary" onClick={todo.addTask}>
+                  Add Task
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          
+      </Aux>
 
 
   )
+
 }
 
 
