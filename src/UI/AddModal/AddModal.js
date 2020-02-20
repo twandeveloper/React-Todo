@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Button, Modal, Form, FormControl, InputGroup} from "react-bootstrap";
 import Aux from '../../Hoc/Aux/Aux'
 import TodoContext from '../../contexts/TodoContext';
+import classes from './AddModal.module.css'
 
 
 const AddModal = (props) => {
@@ -11,7 +12,7 @@ const AddModal = (props) => {
   return(
         <Aux>
           
-            <Modal show={todo.show} onHide={todo.closeModal}>
+            <Modal className={classes.AddModal} show={todo.show} onHide={todo.closeModal}>
               <Modal.Header closeButton>
                 <Modal.Title>Modal heading</Modal.Title>
               </Modal.Header>

@@ -1,7 +1,8 @@
 .App {
   height: 100vh;
   text-align: center;
-  background-color: #1e6262;
+  margin: auto;
+  width: 1000px;
 }
 
 .App-logo {
@@ -30,3 +31,8 @@
   color: #61dafb;
 }
 
+@media (min-width:200px) and (max-width:800px){
+  .App {
+      width: 100%;
+  }
+}

@@ -1,0 +1,10 @@
+.AddModal {
+    margin-top: 10%;
+}
+
+
+@media (min-width: 300px) and (max-width: 500px) {
+    .AddModal {
+        margin-top: 60%;
+    }
+}
